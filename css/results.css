@@ -1,6 +1,4 @@
-/* =========================================
-   VARIABLES
-========================================= */
+
 :root{
   --text:#1a1a1a;
   --muted:#8f8f8f;
@@ -11,9 +9,7 @@
   --radius:18px;
 }
 
-/* =========================================
-   BASE
-========================================= */
+
 *{ box-sizing:border-box; }
 
 body{
@@ -22,9 +18,7 @@ body{
   font-family:"Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
 
-/* =========================================
-   TOP HEADER NAV
-========================================= */
+
 .top-header{
   background:#000;
   box-shadow:0 4px 20px rgba(0,0,0,0.4);
@@ -75,9 +69,7 @@ body{
   border-bottom:2px solid #fff;
 }
 
-/* =========================================
-   HERO SEARCH WRAPPER
-========================================= */
+
 .hero-search-wrapper{
   position:relative;
   padding:38px 0;
@@ -105,9 +97,6 @@ body{
   z-index:2;
 }
 
-/* =========================================
-   HERO SEARCH CARD
-========================================= */
 .hero-search-card{
   width:100%;
   max-width:680px;
@@ -133,7 +122,6 @@ body{
   font-weight:700;
 }
 
-/* אייקון תאריך לבן */
 input[type="date"]::-webkit-calendar-picker-indicator{
   filter:invert(1);
 }
@@ -153,9 +141,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   outline:none;
 }
 
-/* =========================================
-   BUTTONS GLOBAL
-========================================= */
 .btn-dark,
 .btn-primary{
   background:linear-gradient(135deg,var(--gold),var(--gold-dark));
@@ -172,14 +157,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   border-radius:14px;
 }
 
-/* אם רצית שהטקסט חיפוש יהיה לבן */
 .hero-search-card .btn{
   color:#fff;
 }
 
-/* =========================================
-   RESULTS HEADER AREA
-========================================= */
 main.container{
   margin-top:10px !important;
 }
@@ -211,9 +192,6 @@ main.container{
   margin:6px 0 0 0;
 }
 
-/* =========================================
-   FILTER TOGGLE BUTTON
-========================================= */
 .filter-toggle{
   flex:0 0 auto;
   background:none;
@@ -238,7 +216,6 @@ main.container{
   box-shadow:none;
 }
 
-/* אם את רוצה בלי מלבן מסביב לסינון */
 .filter-toggle{
   border:none;
   background:transparent;
@@ -246,7 +223,6 @@ main.container{
   box-shadow:none;
 }
 
-/* שלושת הפסים */
 .hamburger{
   width:24px;
   height:2px;
@@ -268,9 +244,6 @@ main.container{
 .hamburger::before{ top:-7px; }
 .hamburger::after{ top:7px; }
 
-/* =========================================
-   HOTEL CARDS
-========================================= */
 .card-hotel{
   border-radius:var(--radius);
   overflow:hidden;
@@ -320,9 +293,7 @@ main.container{
 
 .visitors{ color:var(--muted); }
 
-/* =========================================
-   LIKE BUTTON
-========================================= */
+
 .like-btn{
   position:absolute;
   top:14px;
@@ -347,11 +318,7 @@ main.container{
 .like-btn:hover{ transform:scale(1.08); }
 .like-btn.active{ color:#e53935; }
 
-/* =========================================
-   OFFCANVAS FILTER PANEL
-========================================= */
 
-/* הופך פתיחה לימין */
 .offcanvas.offcanvas-start{
   left:auto;
   right:0;
@@ -425,7 +392,6 @@ main.container{
   color:var(--gold);
 }
 
-/* 체크בוקס RTL מסודר */
 #filtersOffcanvas .form-check{
   direction:rtl;
   text-align:right;
@@ -457,7 +423,7 @@ main.container{
   box-shadow:0 0 0 0.2rem rgba(202,164,95,.25);
 }
 
-/* כפתורי פעולה */
+
 #filtersOffcanvas .filters-actions .btn{
   height:56px;
   padding:0 18px;

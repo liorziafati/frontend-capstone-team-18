@@ -6,7 +6,7 @@
   <title>תוצאות חיפוש | OLM ✨</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/results.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 
 <body>
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="filtersOffcanvas" aria-labelledby="filtersOffcanvasLabel">
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="filtersOffcanvas" aria-labelledby="filtersOffcanvasLabel">
     <div class="offcanvas-header">
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -41,29 +41,31 @@
         </div>
 
         <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" id="cbBreakfast">
-          <label class="form-check-label" for="cbBreakfast">כולל ארוחת בוקר</label>
+          <input class="form-check-input" type="checkbox" id="fBreakfast">
+          <label class="form-check-label" for="fBreakfast">כולל ארוחת בוקר</label>
         </div>
 
         <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" id="cbParking">
-          <label class="form-check-label" for="cbParking">חנייה במלון</label>
+          <input class="form-check-input" type="checkbox" id="fParking">
+          <label class="form-check-label" for="fParking">חנייה במלון</label>
         </div>
 
         <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" id="cbSpa">
-          <label class="form-check-label" for="cbSpa">ספא</label>
+          <input class="form-check-input" type="checkbox" id="fSpa">
+          <label class="form-check-label" for="fSpa">ספא</label>
         </div>
 
         <div class="form-check mb-3">
-          <input class="form-check-input" type="checkbox" id="cbFreeCancel">
-          <label class="form-check-label" for="cbFreeCancel">ביטול חינם</label>
+          <input class="form-check-input" type="checkbox" id="fFreeCancel">
+          <label class="form-check-label" for="fFreeCancel">ביטול חינם</label>
+        </div>
+        
+        <div class="filters-actions d-flex gap-2 mt-4">
+          <button class="btn btn-dark w-100" type="button" id="applyFilters">החל סינון</button>
+          <button class="btn btn-outline-secondary w-100" type="button" id="clearFilters">נקה</button>
         </div>
 
-        <div class="filters-actions d-flex gap-2 mt-4">
-          <button class="btn btn-dark w-100" type="button">החל סינון</button>
-          <button class="btn btn-outline-secondary w-100" type="button">נקה</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -141,11 +143,17 @@
     </div>
     
     <div class="container my-5">
-      <div class="row g-4 justify-content-center">
+      <div class="row g-4" id="hotelsGrid">
 
     <!-- מלון 1 -->
-    <div class="col-12 col-md-6 col-lg-4">
-      <article class="card-hotel" data-stars="5">
+    <div class="col-12 col-md-6 col-lg-4" id="hotel1"> 
+      <article class="card-hotel"
+         data-stars="5"
+         data-breakfast="1"
+         data-parking="1"
+         data-spa="1"
+         data-freecancel="1">
+
         <div class="card-img-wrap">
           <img src="images/hotel1.jpg" class="hotel-photo" alt="Sea Pearl Hotel">
           <button class="like-btn" type="button">♡</button>
@@ -163,8 +171,14 @@
     </div>
 
     <!-- מלון 2 -->
-    <div class="col-12 col-md-6 col-lg-4">
-      <article class="card-hotel" data-stars="4">
+    <div class="col-12 col-md-6 col-lg-4" id="hotel2"> 
+      <article class="card-hotel"
+         data-stars="5"
+         data-breakfast="1"
+         data-parking="0"
+         data-spa="1"
+         data-freecancel="1">
+
         <div class="card-img-wrap">
           <img src="images/hotel2.jpg" class="hotel-photo" alt="Urban Rose">
           <button class="like-btn active" type="button">♥</button>
@@ -182,8 +196,14 @@
     </div>
 
     <!-- מלון 3 -->
-    <div class="col-12 col-md-6 col-lg-4">
-      <article class="card-hotel" data-stars="5">
+    <div class="col-12 col-md-6 col-lg-4" id="hotel3"> 
+      <article class="card-hotel"
+         data-stars="5"
+         data-breakfast="0"
+         data-parking="0"
+         data-spa="0"
+         data-freecancel="0">
+
         <div class="card-img-wrap">
           <img src="images/hotel3.jpg" class="hotel-photo" alt="Tranquil Haven Hotel">
           <button class="like-btn" type="button">♡</button>
@@ -201,8 +221,14 @@
     </div>
 
     <!-- מלון 4 -->
-    <div class="col-12 col-md-6 col-lg-4">
-      <article class="card-hotel" data-stars="4">
+    <div class="col-12 col-md-6 col-lg-4" id="hotel4"> 
+      <article class="card-hotel"
+         data-stars="4"
+         data-breakfast="1"
+         data-parking="1"
+         data-spa="0"
+         data-freecancel="0">
+
         <div class="card-img-wrap">
           <img src="images/hotel4.jpg" class="hotel-photo" alt="Golden Sand Suites">
           <button class="like-btn" type="button">♡</button>
@@ -220,8 +246,14 @@
     </div>
 
     <!-- מלון 5 -->
-    <div class="col-12 col-md-6 col-lg-4">
-      <article class="card-hotel" data-stars="5">
+    <div class="col-12 col-md-6 col-lg-4" id="hotel5"> 
+      <article class="card-hotel"
+         data-stars="5"
+         data-breakfast="0"
+         data-parking="0"
+         data-spa="1"
+         data-freecancel="0">
+
         <div class="card-img-wrap">
           <img src="images/hotel5.jpg" class="hotel-photo" alt="Skyline Boutique">
           <button class="like-btn" type="button">♡</button>
@@ -239,8 +271,14 @@
     </div>
 
     <!-- מלון 6 -->
-    <div class="col-12 col-md-6 col-lg-4">
-      <article class="card-hotel" data-stars="4">
+    <div class="col-12 col-md-6 col-lg-4" id="hotel6"> 
+      <article class="card-hotel"
+         data-stars="4"
+         data-breakfast="1"
+         data-parking="1"
+         data-spa="0"
+         data-freecancel="1">
+
         <div class="card-img-wrap">
           <img src="images/hotel6.jpg" class="hotel-photo" alt="Palm Resort">
           <button class="like-btn" type="button">♡</button>
@@ -259,7 +297,7 @@
 
   </div>
 </div>
-<<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/results.js"></script>
 </body>
 </html>
