@@ -29,6 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // ================== תאריכים - חסימת עבר (תיקון UTC) ==================
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  // YYYY-MM-DD לפי זמן מקומי (לא UTC)
+  const todayStr = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+    .toISOString()
+    .split("T")[0];
+
+  checkin.min = todayStr;
+  checkout.min = todayStr;
+
   // ================== יעד - Autocomplete ==================
   const destinations = [
     "קוסמוי, תאילנד",
@@ -83,8 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.textContent = name;
 
       btn.addEventListener("mousedown", (e) => {
-        // mousedown כדי שהבחירה תעבוד לפני blur
-        e.preventDefault();
+        e.preventDefault(); // כדי שיעבוד לפני blur
         city.value = name;
         closeSuggest();
         city.focus();
@@ -102,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderSuggest(getMatches(q));
   });
 
-  // אם המשתמש נכנס לשדה ויש טקסט, תפתח הצעות
   city.addEventListener("focus", () => {
     const q = city.value.trim();
     if (q.length >= 2) renderSuggest(getMatches(q));
@@ -129,9 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
     childrenVal.textContent = childrenInput.value;
     roomsVal.textContent = roomsInput.value;
 
-    document.querySelectorAll('.step-btn[data-field="adults"][data-delta="-1"]').forEach(b => b.disabled = Number(adultsInput.value) <= 1);
-    document.querySelectorAll('.step-btn[data-field="rooms"][data-delta="-1"]').forEach(b => b.disabled = Number(roomsInput.value) <= 1);
-    document.querySelectorAll('.step-btn[data-field="children"][data-delta="-1"]').forEach(b => b.disabled = Number(childrenInput.value) <= 0);
+    document
+      .querySelectorAll('.step-btn[data-field="adults"][data-delta="-1"]')
+      .forEach((b) => (b.disabled = Number(adultsInput.value) <= 1));
+
+    document
+      .querySelectorAll('.step-btn[data-field="rooms"][data-delta="-1"]')
+      .forEach((b) => (b.disabled = Number(roomsInput.value) <= 1));
+
+    document
+      .querySelectorAll('.step-btn[data-field="children"][data-delta="-1"]')
+      .forEach((b) => (b.disabled = Number(childrenInput.value) <= 0));
 
     setGuestsSummary();
   }
@@ -159,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // חשוב: לא לסגור אם לוחצים בתוך הפאנל עצמו
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".field-guests")) closeGuestsPanel();
   });
@@ -174,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const field = btn.dataset.field;
       const delta = Number(btn.dataset.delta);
+
       const input =
         field === "adults" ? adultsInput :
         field === "children" ? childrenInput :
@@ -191,17 +209,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   syncGuestUI();
 
-  // ================== תאריכים - חסימה מלאה ==================
+  // ================== תאריכים - אכיפה + לילות ==================
   function enforceDates() {
     const inVal = checkin.value;
     const outVal = checkout.value;
 
-    // לא מאפשרים לבחור checkout לפני checkin (ברמת UI)
+    // תמיד לא מאפשרים לבחור checkout לפני checkin
     if (inVal) {
       checkout.min = inVal;
+
       if (outVal && outVal < inVal) {
         checkout.value = "";
       }
+    } else {
+      checkout.min = todayStr;
     }
 
     // חישוב לילות
@@ -218,6 +239,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   checkin.addEventListener("change", enforceDates);
   checkout.addEventListener("change", enforceDates);
+
+  // להפעיל פעם אחת בהתחלה
+  enforceDates();
 
   // ================== Submit ==================
   form.addEventListener("submit", (e) => {
