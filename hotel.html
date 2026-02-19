@@ -3,120 +3,150 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>תוצאות חיפוש | OLM Stays</title>
+  <title>תוצאות חיפוש | OLM ✨</title>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-   <link rel="stylesheet" href="css/style.css">
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="filtersOffcanvas" aria-labelledby="filtersOffcanvasLabel">
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <div class="filter-panel">
+        <h3 class="panel-title" id="filtersOffcanvasLabel">סינון לפי</h3>
+
+        <h6 class="popular-title mb-3">מסנני חיפוש פופולריים</h6>
+
+        <div class="mb-4">
+          <div class="form-label mb-2 stars-label">לפי כוכבים</div>
+
+          <div class="stars-wrap stars-filter" dir="ltr" aria-label="Stars filter">
+            <button type="button" class="star" data-value="1" aria-label="1 star">☆</button>
+            <button type="button" class="star" data-value="2" aria-label="2 stars">☆</button>
+            <button type="button" class="star" data-value="3" aria-label="3 stars">☆</button>
+            <button type="button" class="star" data-value="4" aria-label="4 stars">☆</button>
+            <button type="button" class="star" data-value="5" aria-label="5 stars">☆</button>
+          </div>
+
+          <input type="hidden" id="starsValue" value="0">
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="cbBreakfast">
+          <label class="form-check-label" for="cbBreakfast">כולל ארוחת בוקר</label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="cbParking">
+          <label class="form-check-label" for="cbParking">חנייה במלון</label>
+        </div>
+
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="cbSpa">
+          <label class="form-check-label" for="cbSpa">ספא</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="cbFreeCancel">
+          <label class="form-check-label" for="cbFreeCancel">ביטול חינם</label>
+        </div>
+
+        <div class="filters-actions d-flex gap-2 mt-4">
+          <button class="btn btn-dark w-100" type="button">החל סינון</button>
+          <button class="btn btn-outline-secondary w-100" type="button">נקה</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
   <header class="top-header">
     <div class="container header-inner">
       <div class="brand-wrap">
-        <span class="logo-dot"></span>
-        <span class="brand-name">OLM Stays</span>
+        <span class="brand-name">OLM ✨</span>
       </div>
 
       <nav class="top-nav d-none d-md-flex">
         <a href="#" class="top-nav-link">בית</a>
-        <a href="#" class="top-nav-link active">חיפוש</a>
-        <a href="#" class="top-nav-link">בלוג</a>
+        <a href="#" class="top-nav-link">ההזמנות שלי</a>
         <a href="#" class="top-nav-link">אודות</a>
       </nav>
     </div>
   </header>
 
-  
-  <section class="filters-section">
+  <section class="hero-search-wrapper">
     <div class="container">
-      <div class="row g-3 align-items-stretch">
+      <div class="hero-search-card">
+        <h5 class="search-card-title">פרטי חיפוש</h5>
 
-        <div class="col-12 col-md-3">
-          <div class="filter-pill">
-            <div class="filter-title">מיקום</div>
-            <div class="filter-value">תל אביב</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">יעד</label>
+            <input type="text" class="form-control hero-input" value="קוסמוי, תאילנד">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">מספר אורחים</label>
+            <select class="form-control hero-input">
+              <option>2 אורחים</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">תאריך הגעה</label>
+            <input type="date" class="form-control hero-input" value="2026-02-25">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">תאריך עזיבה</label>
+            <input type="date" class="form-control hero-input" value="2026-02-27">
           </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="filter-pill">
-                 <div class="filter-title">חדרים</div>
-                 <div class="filter-value">1</div>
-            </div>
-        </div>
-
-
-        <div class="col-6 col-md-2">
-          <div class="filter-pill">
-            <div class="filter-title">תאריך הגעה</div>
-            <div class="filter-value">12/01/2026</div>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-2">
-          <div class="filter-pill">
-            <div class="filter-title">תאריך עזיבה</div>
-            <div class="filter-value">15/01/2026</div>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3">
-          <div class="filter-pill muted">
-            <div class="filter-title">חיפוש מלון ספציפי</div>
-            <div class="filter-value placeholder">לדוגמה: ibis</div>
-          </div>
-        </div>
-
+        <button class="btn btn-primary w-100 mt-4">חיפוש</button>
       </div>
     </div>
   </section>
 
-  
+
   <main class="container my-4">
-    <div class="mb-3">
-      <h1 class="page-title">מלונות בתל אביב</h1>
-      <p class="page-sub">מצאנו 5 מלונות מתאימים</p>
+
+    <div class="results-header mb-3">
+      <button class="filter-toggle"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#filtersOffcanvas"
+        aria-controls="filtersOffcanvas"
+        aria-label="סינון">
+
+  <span class="hamburger"></span>
+  <span class="filter-text">סינון</span>
+
+</button>
+
+
+      <div class="results-text">
+        <h1 class="page-title">תוצאות חיפוש: מלונות בקוסמוי, תאילנד</h1>
+        <p class="page-sub">מצאנו 5 מלונות מתאימים</p>
+      </div>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-4 justify-content-center">
 
-  <aside class="col-12 col-lg-3">
-    <div class="filters-box">
-      <h2 class="filters-title">סינון</h2>
-
-      <label class="filter-check">
-        <input type="checkbox">
-        <span>בריכה</span>
-      </label>
-
-      <label class="filter-check">
-        <input type="checkbox">
-        <span>ארוחת בוקר</span>
-      </label>
-
-      <label class="filter-check">
-        <input type="checkbox">
-        <span>חניה</span>
-      </label>
-
-    </div>
-  </aside>
-
- 
-  <section class="col-12 col-lg-9">
-
-    
-    <button class="btn btn-dark open-filters-btn mb-3" type="button">סינון</button>
-    <div class="row g-4">
-
+      <!-- מלון 1 -->
       <div class="col-12 col-md-6 col-lg-4">
         <article class="card-hotel">
           <div class="card-img-wrap">
-            <img src="hotel1.jpg" class="hotel-photo" alt="תמונה של Sea Pearl Hotel">
+            <img src="images/hotel1.jpg" class="hotel-photo" alt="Hotel 1">
             <button class="like-btn" type="button">♡</button>
           </div>
           <div class="card-content">
@@ -131,11 +161,11 @@
         </article>
       </div>
 
-      
+      <!-- מלון 2 -->
       <div class="col-12 col-md-6 col-lg-4">
         <article class="card-hotel">
           <div class="card-img-wrap">
-            <img src="hotel2.jpg" class="hotel-photo" alt="תמונה של Urban Rose">
+            <img src="images/hotel2.jpg" class="hotel-photo" alt="Hotel 2">
             <button class="like-btn active" type="button">♥</button>
           </div>
           <div class="card-content">
@@ -150,11 +180,11 @@
         </article>
       </div>
 
-      
+      <!-- מלון 3 -->
       <div class="col-12 col-md-6 col-lg-4">
         <article class="card-hotel">
           <div class="card-img-wrap">
-            <img src="hotel3.jpg" class="hotel-photo" alt="תמונה של Tranquil Haven Hotel">
+            <img src="images/hotel3.jpg" class="hotel-photo" alt="Hotel 3">
             <button class="like-btn" type="button">♡</button>
           </div>
           <div class="card-content">
@@ -164,16 +194,17 @@
               <span class="stars">★★★★★</span>
               <span class="visitors">(429 מבקרים)</span>
             </div>
+
             <a class="btn btn-dark w-100 mt-3" href="#">לפרטים</a>
           </div>
         </article>
       </div>
 
-      
+      <!-- מלון 4 -->
       <div class="col-12 col-md-6 col-lg-4">
         <article class="card-hotel">
           <div class="card-img-wrap">
-            <img src="hotel4.jpg" class="hotel-photo" alt="תמונה של Golden Sand Suites">
+            <img src="images/hotel4.jpg" class="hotel-photo" alt="Hotel 4">
             <button class="like-btn" type="button">♡</button>
           </div>
           <div class="card-content">
@@ -188,11 +219,11 @@
         </article>
       </div>
 
-      
+      <!-- מלון 5 -->
       <div class="col-12 col-md-6 col-lg-4">
         <article class="card-hotel">
           <div class="card-img-wrap">
-            <img src="hotel5.jpg" class="hotel-photo" alt="תמונה של Skyline Boutique">
+            <img src="images/hotel5.jpg" class="hotel-photo" alt="Hotel 5">
             <button class="like-btn" type="button">♡</button>
           </div>
           <div class="card-content">
@@ -206,14 +237,45 @@
           </div>
         </article>
       </div>
+        <div class="col-12 col-md-6 col-lg-4">
+        <article class="card-hotel">
+          <div class="card-img-wrap">
+            <img src="images/hotel5.jpg" class="hotel-photo" alt="Hotel 5">
+            <button class="like-btn" type="button">♡</button>
+          </div>
+          <div class="card-content">
+            <h3 class="hotel-name">Skyline Boutique</h3>
+            <p class="hotel-address">הצפון הישן, תל אביב</p>
+            <div class="hotel-rating">
+              <span class="stars">★★★★★</span>
+              <span class="visitors">(250 מבקרים)</span>
+            </div>
 
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
 
-
-
+    <!-- מלון 6 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <article class="card-hotel">
+          <div class="card-img-wrap">
+            <img src="images/hotel6.jpg" class="hotel-photo" alt="Hotel 4">
+            <button class="like-btn" type="button">♡</button>
+          </div>
+          <div class="card-content">
+            <h3 class="hotel-name">Golden Sand Suites</h3>
+            <p class="hotel-address">בן יהודה, תל אביב</p>
+            <div class="hotel-rating">
+              <span class="stars">★★★★☆</span>
+              <span class="visitors">(988 מבקרים)</span>
+            </div>
+            <a class="btn btn-dark w-100 mt-3" href="#">לפרטים</a>
+          </div>
+        </article>
+      </div>
 
 
