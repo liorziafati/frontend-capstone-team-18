@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+ HEAD
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hotel Booking | Home</title>
 
@@ -133,5 +134,213 @@
 
   <!-- Your JS -->
   <script src="js/main.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OLM | חיפוש מלונות</title>
+  <meta name="description" content="חיפוש מלונות לפי יעד ותאריכים. תוצאות ברורות ותהליך הזמנה פשוט." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./style.css/home.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">דלג לתוכן המרכזי</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="./images/logo.jpg" alt="OLM logo" class="logo-img">
+      </div>
+
+      <button class="mode-btn" id="modeBtn" type="button" aria-label="החלפת מצב תצוגה כהה או בהירה">
+        מצב תצוגה
+      </button>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <section class="hero" aria-label="פתיחה">
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">מלונות נבחרים • מחירים משתלמים • הזמנה מהירה</p>
+          <h1 class="hero-title">המלון הבא שלך מתחיל כאן</h1>
+          <p class="hero-subtitle">מוצאים. משווים. מזמינים. הכל במקום אחד.</p>
+
+          <div class="info-box" aria-label="מידע קצר">
+            <p class="info-title">טיפ קטן</p>
+            <p class="info-text">בחירת תאריכים גמישים יכולה לעזור למצוא אפשרויות משתלמות יותר</p>
+          </div>
+        </div>
+
+        <div class="card hero-card" aria-label="טופס חיפוש מלונות">
+          <form id="searchForm" class="search-form" novalidate>
+            <h2 class="card-title">פרטי חיפוש</h2>
+
+            <div class="form-grid form-grid-2rows">
+  <!-- ROW 1: יעד + אורחים -->
+  <div class="row row-top">
+    <!-- יעד -->
+    <div class="field field-suggest">
+      <label for="city">יעד</label>
+      <input
+        id="city"
+        name="city"
+        type="text"
+        placeholder="לדוגמה: קוסמוי"
+        autocomplete="off"
+        required
+        minlength="2"
+        aria-autocomplete="list"
+        aria-controls="citySuggest"
+        aria-expanded="false"
+      />
+      <div id="citySuggest" class="suggest" role="listbox" aria-label="הצעות ליעד" hidden></div>
+    </div>
+
+    <!-- אורחים (כפתור שנפתח) -->
+    <div class="field field-guests">
+      <label for="guestsBtn">אורחים</label>
+      <button
+        id="guestsBtn"
+        class="guests-btn"
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="guestsPanel"
+      >
+        <span id="guestsSummary">מבוגר 1 • ילדים 0 • חדר 1</span>
+        <span class="chev" aria-hidden="true">▾</span>
+      </button>
+
+      <div id="guestsPanel" class="guests-panel" role="dialog" aria-label="בחירת אורחים" hidden>
+        <div class="guest-row">
+          <div class="guest-labels">
+            <div class="guest-title">מבוגרים</div>
+            <div class="guest-sub">גיל 13+</div>
+          </div>
+          <div class="stepper" aria-label="מבוגרים">
+            <button type="button" class="step-btn" data-field="adults" data-delta="-1" aria-label="הפחת מבוגרים">−</button>
+            <span class="step-value" id="adultsVal" aria-live="polite">1</span>
+            <button type="button" class="step-btn" data-field="adults" data-delta="1" aria-label="הוסף מבוגרים">+</button>
+          </div>
+        </div>
+
+        <div class="guest-row">
+          <div class="guest-labels">
+            <div class="guest-title">ילדים</div>
+            <div class="guest-sub">גיל 0–12</div>
+          </div>
+          <div class="stepper" aria-label="ילדים">
+            <button type="button" class="step-btn" data-field="children" data-delta="-1" aria-label="הפחת ילדים">−</button>
+            <span class="step-value" id="childrenVal" aria-live="polite">0</span>
+            <button type="button" class="step-btn" data-field="children" data-delta="1" aria-label="הוסף ילדים">+</button>
+          </div>
+        </div>
+
+        <div class="guest-row">
+          <div class="guest-labels">
+            <div class="guest-title">חדרים</div>
+            <div class="guest-sub">מספר חדרים</div>
+          </div>
+          <div class="stepper" aria-label="חדרים">
+            <button type="button" class="step-btn" data-field="rooms" data-delta="-1" aria-label="הפחת חדרים">−</button>
+            <span class="step-value" id="roomsVal" aria-live="polite">1</span>
+            <button type="button" class="step-btn" data-field="rooms" data-delta="1" aria-label="הוסף חדרים">+</button>
+          </div>
+        </div>
+
+        <div class="guest-actions">
+          <button type="button" class="ghost-btn" id="closeGuests">אישור</button>
+        </div>
+      </div>
+
+      <!-- שדות חבויים כדי שהטופס “ידע” את הערכים -->
+      <input type="hidden" id="adults" name="adults" value="1" />
+      <input type="hidden" id="children" name="children" value="0" />
+      <input type="hidden" id="rooms" name="rooms" value="1" />
+    </div>
+  </div>
+
+  <!-- ROW 2: תאריכים -->
+  <div class="row row-bottom">
+    <div class="field">
+      <label for="checkin">תאריך הגעה</label>
+      <input id="checkin" name="checkin" type="date" required min=""/>
+    </div>
+
+    <div class="field">
+      <label for="checkout">תאריך עזיבה</label>
+      <input id="checkout" name="checkout" type="date" required min="" />
+    </div>
+  </div>
+</div>
+
+            <p class="nights" id="nightsInfo" aria-live="polite"></p>
+            <p class="form-error" id="formError" role="alert" aria-live="polite"></p>
+            <p class="success" id="successMsg" aria-live="polite"></p>
+
+            <button class="primary-btn" type="submit" aria-label="חיפוש לפי הפרטים שהוזנו">
+              חיפוש
+            </button>
+
+            <p class="fine-print">הפרטים נשמרים להמשך התהליך.</p>
+            <p id="lastSearch" class="last-search"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+<!-- WHY CHOOSE US -->
+<section class="section section-muted" aria-label="יתרונות OLM">
+  <div class="container">
+
+    <div class="section-head">
+      <h2 class="section-title">למה לבחור דווקא ב-OLM?</h2>
+      <p class="section-subtitle">
+        חיפוש פשוט, תוצאות ברורות ותהליך הזמנה נוח — כדי שתוכלו לבחור בביטחון.
+      </p>
+    </div>
+
+    <div class="features">
+
+      <article class="feature">
+        <h3 class="feature-title">מחירים משתלמים</h3>
+        <p class="feature-text">
+          השוואה בין מלונות מאפשרת למצוא אפשרויות איכותיות במחירים נוחים, בהתאם לתקציב שלך.
+        </p>
+      </article>
+
+      <article class="feature">
+        <h3 class="feature-title">חיפוש מהיר ופשוט</h3>
+        <p class="feature-text">
+          הזינו יעד ותאריכים וקבלו תוצאות ברורות, כדי לחסוך זמן ולמצוא את האפשרות המתאימה ביותר.
+        </p>
+      </article>
+
+      <article class="feature">
+        <h3 class="feature-title">מידע ברור ונגיש</h3>
+        <p class="feature-text">
+          הצגת פרטי המלון בצורה מסודרת מאפשרת לקבל החלטה בצורה קלה ומושכלת.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> OLM</p>
+    </div>
+  </footer>
+
+  <script src="./js/home.js"></script>
+ 4b101bf704ce4c790f2927bee994ac1e38c3116f
 </body>
 </html>
