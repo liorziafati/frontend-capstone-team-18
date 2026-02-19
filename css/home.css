@@ -46,6 +46,32 @@ a{color:inherit}
   width:100%;
 }
 
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* כפתור עגלה */
+.cart-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:800;
+
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(15,21,32,.72);
+  color:var(--text);
+}
+
+.cart-btn:hover{
+  background:rgba(217,181,109,.14);
+  border-color:rgba(217,181,109,.35);
+}
+
 .logo-img{
   width:95px;      
   height:auto;

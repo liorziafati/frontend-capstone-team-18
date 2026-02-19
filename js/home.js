@@ -245,33 +245,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ================== Submit ==================
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    formError.textContent = "";
-    successMsg.textContent = "";
+  e.preventDefault();
 
-    const cityVal = city.value.trim();
-    if (cityVal.length < 2) {
-      formError.textContent = "אנא הזיני יעד.";
-      city.focus();
-      return;
-    }
+  formError.textContent = "";
+  successMsg.textContent = "";
 
-    if (!checkin.value || !checkout.value) {
-      formError.textContent = "אנא בחרי תאריכים.";
-      return;
-    }
+  const cityVal = city.value.trim();
 
-    if (checkout.value < checkin.value) {
-      formError.textContent = "תאריך העזיבה חייב להיות אחרי ההגעה.";
-      checkout.focus();
-      return;
-    }
+  if (cityVal.length < 2) {
+    formError.textContent = "אנא הזיני יעד.";
+    city.focus();
+    return;
+  }
 
-    const summary =
-      `${cityVal} | ${checkin.value} → ${checkout.value} | ` +
-      `מבוגרים: ${adultsInput.value}, ילדים: ${childrenInput.value}, חדרים: ${roomsInput.value}`;
+  if (!checkin.value || !checkout.value) {
+    formError.textContent = "אנא בחרי תאריכים.";
+    return;
+  }
 
-    localStorage.setItem("olm_last_search", summary);
-    successMsg.textContent = "מחפש מלונות...";
+  if (checkout.value <= checkin.value) {
+    formError.textContent = "תאריך העזיבה חייב להיות אחרי ההגעה.";
+    checkout.focus();
+    return;
+  }
+
+  const adults = adultsInput.value;
+  const children = childrenInput.value;
+  const rooms = roomsInput.value;
+
+  // שמירה ל-cart
+  const summary =
+    `${cityVal} | ${checkin.value} → ${checkout.value} | מבוגרים:${adults}, ילדים:${children}, חדרים:${rooms}`;
+
+  localStorage.setItem("olm_last_search", summary);
+
+  // מעבר לעמוד results עם הנתונים
+  const params = new URLSearchParams({
+    city: cityVal,
+    checkin: checkin.value,
+    checkout: checkout.value,
+    adults,
+    children,
+    rooms
   });
+
+  window.location.href = `results.html?${params.toString()}`;
+});
 });

@@ -1,67 +1,160 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OLM | עגלת הזמנות</title>
 
-  <link rel="stylesheet" href="./css/cart.css">
+  <link rel="stylesheet" href="./css/theme.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/cart.css" />
 </head>
 
 <body>
 
-<header class="cart-header">
-  <div class="container header-inner">
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="back-home" href="index.html" aria-label="חזרה לדף הבית">
+        ← חזרה לדף הבית
+      </a>
 
-    <img src="./images/logo.jpg" class="logo-img" alt="OLM logo">
+      <a class="brand" href="index.html" aria-label="OLM דף הבית">
+        <img src="./images/logo.jpg" alt="OLM" class="brand-logo" />
+      </a>
+    </div>
+  </header>
 
-    <h1 class="cart-title">עגלת הזמנות</h1>
-
-  </div>
-</header>
-
-<main class="container">
-
-  <!-- אם אין הזמנות -->
-  <div id="emptyCart" class="empty-cart">
-    אין עדיין הזמנות
-  </div>
-
-  <!-- אם יש הזמנה -->
-  <div id="cartContent" class="cart-content" hidden>
-
-    <div class="cart-card">
-
-      <div class="cart-row">
-        <span class="label">יעד:</span>
-        <span id="cartCity"></span>
-      </div>
-
-      <div class="cart-row">
-        <span class="label">תאריך הגעה:</span>
-        <span id="cartCheckin"></span>
-      </div>
-
-      <div class="cart-row">
-        <span class="label">תאריך עזיבה:</span>
-        <span id="cartCheckout"></span>
-      </div>
-
-      <div class="cart-row">
-        <span class="label">אורחים:</span>
-        <span id="cartGuests"></span>
-      </div>
-
+  <main class="container page">
+    <div class="page-head">
+      <h1 class="page-title">ההזמנה שלך</h1>
+      <p class="page-subtitle">בדקי את הפרטים לפני תשלום.</p>
     </div>
 
-    <button class="clear-btn" id="clearCartBtn">
-      נקה עגלה
-    </button>
+    <!-- EMPTY -->
+    <section id="emptyCart" class="empty" hidden>
+      <div class="empty-card">
+        <h2 class="empty-title">אין עדיין הזמנות בעגלה</h2>
+        <p class="empty-text">חזרי לדף הבית, חפשי מלון ושמרי הזמנה.</p>
+        <a class="btn btn-primary" href="index.html">לחיפוש מלונות</a>
+      </div>
+    </section>
 
-  </div>
+    <!-- CONTENT -->
+    <section id="cartContent" class="grid" hidden>
+      <!-- Hotel card -->
+      <article class="hotel-card">
+        <div class="hotel-media">
+          <img id="hotelImg" src="./images/hotel-placeholder.jpg" alt="תמונת המלון" />
+          <div class="badge" id="hotelBadge">נבחר</div>
+        </div>
 
-</main>
+        <div class="hotel-body">
+          <div class="hotel-top">
+            <div>
+              <h2 class="hotel-name" id="hotelName">Sea View Hotel</h2>
+              <p class="hotel-meta" id="hotelMeta">קרוב לים • דירוג 4.6</p>
+            </div>
 
-<script src="./js/cart.js"></script>
+            <div class="price">
+              <div class="price-label">סה״כ לתשלום</div>
+              <div class="price-value"><span id="totalPrice">₪0</span></div>
+              <div class="price-note" id="priceNote">כולל מיסים</div>
+            </div>
+          </div>
+
+          <div class="details">
+            <div class="detail">
+              <div class="detail-label">יעד</div>
+              <div class="detail-value" id="cartCity">—</div>
+            </div>
+
+            <div class="detail">
+              <div class="detail-label">תאריך הגעה</div>
+              <div class="detail-value" id="cartCheckin">—</div>
+            </div>
+
+            <div class="detail">
+              <div class="detail-label">תאריך עזיבה</div>
+              <div class="detail-value" id="cartCheckout">—</div>
+            </div>
+
+            <div class="detail">
+              <div class="detail-label">אורחים</div>
+              <div class="detail-value" id="cartGuests">—</div>
+            </div>
+
+            <div class="detail">
+              <div class="detail-label">לילות</div>
+              <div class="detail-value" id="nights">—</div>
+            </div>
+
+            <div class="detail">
+              <div class="detail-label">מחיר ללילה</div>
+              <div class="detail-value" id="nightlyPrice">₪0</div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-ghost" id="clearCartBtn" type="button">
+              נקה עגלה
+            </button>
+
+            <a class="btn btn-secondary" href="index.html">
+              לשינוי חיפוש
+            </a>
+
+            <button class="btn btn-primary" id="payBtn" type="button">
+              לתשלום
+            </button>
+          </div>
+
+          <p class="fine">
+            בלחיצה על “לתשלום” נעבור למסך תשלום (כרגע דמו עד החיבור הסופי).
+          </p>
+        </div>
+      </article>
+
+      <!-- Summary side card -->
+      <aside class="summary-card" aria-label="סיכום הזמנה">
+        <h3 class="summary-title">סיכום</h3>
+
+        <div class="summary-row">
+          <span>מלון</span>
+          <span id="summaryHotel">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span>לילות</span>
+          <span id="summaryNights">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span>מחיר ללילה</span>
+          <span id="summaryNightly">—</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row total">
+          <span>סה״כ</span>
+          <span id="summaryTotal">₪0</span>
+        </div>
+
+        <button class="btn btn-primary w-full" id="payBtn2" type="button">
+          לתשלום
+        </button>
+
+        <p class="summary-note">
+          אפשר תמיד לחזור אחורה ולשנות תאריכים/אורחים.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./js/cart.js"></script>
+  <script src="./js/theme.js"></script>
 </body>
 </html>

@@ -1,0 +1,70 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+
+/* ברירת מחדל: מצב כהה */
+:root {
+
+  --bg-primary: #0b0f14;
+  --bg-secondary: rgba(255,255,255,0.06);
+  --bg-card: rgba(255,255,255,0.06);
+
+  --text-primary: rgba(255,255,255,0.92);
+  --text-secondary: rgba(255,255,255,0.70);
+
+  --border-color: rgba(255,255,255,0.12);
+
+  --accent: #d9b56d;
+}
+
+/* מצב בהיר */
+[data-theme="light"] {
+
+  --bg-primary: #f5f7fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+
+  --text-primary: #111111;
+  --text-secondary: #555555;
+
+  --border-color: rgba(0,0,0,0.12);
+
+  --accent: #b89145;
+}
+
+/* =========================
+   GLOBAL APPLY
+========================= */
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
+}
+
+.card,
+.hotel-card,
+.summary-card,
+.empty-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.topbar,
+.site-header {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+input,
+button {
+  color: var(--text-primary);
+}
+
+/* מעבר חלק */
+* {
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s;
+}
